@@ -1,4 +1,4 @@
-# Photoshop Boilerplate
+# Creative Little PS Kit
 A guide to help designers create more logical and coherent designs.
 ## Table of Contents
 - [Introduction](#introduction)
