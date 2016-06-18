@@ -124,4 +124,4 @@ Copyright (c) 2016 Creative Little Dots. MIT Licensed, see [LICENSE] for details
    [Foundation for Sites]: <http://foundation.zurb.com/sites.html>
    [Bootstrap]: <http://getbootstrap.com>
    [GuideGuide]: <http://guideguide.me>
-   [License]: <https://github.com/creativelittledots/photoshop-boilerplate/blob/master/LICENSE.md>
+   [License]: <https://github.com/creativelittledots/ps-kit/blob/master/LICENSE.md>
