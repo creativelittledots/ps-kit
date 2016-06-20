@@ -5,7 +5,11 @@ A guide to help designers create more logical and coherent designs.
 - [Framework First](#framework-first)
 - [Approach Overview](#approach-overview)
     - [Guides](#guides)
-    - [Naming (Files, Layers, Layer Compositions)](#naming-files-layers-layer-compositions)
+    - [Naming Conventions](#naming-conventions)
+      - [File Naming](#file-naming)
+      - [Layer Naming](#layer-naming)
+      - [Layer Composition Naming](#layer-composition-naming)
+      - [Paragraph Style and Character Style Naming](#paragraph-style-and-character-style-naming)
     - [Layer Groups](#layer-groups)
     - [Smart Objects](#smart-objects)
     - [Adjustment Layers](#adjustment-layers)
@@ -28,7 +32,7 @@ For ease I have created a Photoshop Boilerplate for the following frameworks:
 
 * [Foundation for Sites]
 * [Bootstrap]
-* Creative Little UI Kit
+* Creative Little UI Kit (pending)
 
 Whilst the Creative Little UI Kit does not have a public release this has been included as it demonstrates a best-practice BEM approach in naming conventions in its entirety.
 
@@ -38,19 +42,33 @@ Much of the following are basic best-practices for Photoshop etiquette. I will t
 ### Guides
 Using our Framework First approach allows us to setup guides consistent with the frameworks grid, and with vertical guides we shouldn't really need to deviate from this at all. Create guides efficiently with an extension such as [GuideGuide].
 
-### Naming (files, layers, layer compositions)
+### Naming Conventions
+#### File Naming
 * Follow the [BEM naming convention] where possible
 * All lowercase names
 * No spaces, hyphenate instead
 * Use American English (ie. use *color* instead of colour)
-* Please no `Layer 2 copy` filenames, that stuff hurts my soul. Try and keep an eye on those pesky duplicates and name them contextually
-* **File and layer name specific rules:**
-  * Follow the order of `[html element],[class]` - with HTML element optional (mostly applicable with form elements, or HTML5 tags such as article, aside etc.)
-  * If you'd like to use a descriptive name (ie. `header`, `hero` etc.) this should be prefixed with `#` to denote this is a comment/descriptive name
-* **Paragraph Styles and Character Styles specific rules:**
-  * Follow the order of either `[html element]@[size]` or `[class]@[size]` depending on what is most appropriate
+* Name components as you would in CSS (ie. hero, feature-block etc.). Names do not need to be exact mirrors of HTML elements but should serve as a guide for development
+* Do not prefix class names with a fullstop as this can be troublesome for the OS reading the file format or makes them hidden on Unix-based OS's such as OS X
+ 
+#### Layer Naming
+* Please no `Layer 2 copy` names, that stuff hurts my soul. Try and keep an eye on those pesky duplicates and name them contextually
+* Use equivalent of classnames or HTML element names where appropriate, otherwise sentence case is acceptable
+ 
+#### Layer Compositions Naming
+* Use `:active`, `:hover`, `:visited`, `:checked`, `:focus`, `:valid` accordingly to add context to transitions
+* As Layer Compositions are in nature descriptive these do not need to follow case rules or other conventions and can be fully formed sentences if appropriate.
+
+#### Paragraph Style and Character Style Naming
+* Follow the [BEM naming convention] where possible
+* All lowercase names
+* No spaces, hyphenate instead
+* Use American English (ie. use *color* instead of colour)
+* Treat names as CSS declarations, so some examples would be:
+  * `.intro-text`, `h1`, `p`
+* When defining a style for a specific viewport size this should be written in the structure of either `[html element]@[size]` or `[class]@[size]` depending on what is most appropriate
   
-### 3. Paragraph Styles and Character Styles
+### Paragraph Styles and Character Styles
 * Use the naming convention outlined above
 * Be aware that each individual PSD have independent Paragraph and Character styles from each-other, but it is possible to import styles to maintain consistency across every component and page layout
 
@@ -62,7 +80,8 @@ Using our Framework First approach allows us to setup guides consistent with the
 Groups are nice but Smart Objects are powerful, use them as much as possible.
 * Make *all* components into PSD-based Smart Objects, ***and link them*** (folder structure outlined below)
 * Avoid embedded Smart Objects, always prefer linked
-* Insert all assets as *linked* Smart Objects (photos, svgs etc)
+* Insert all assets as *linked* Smart Objects (photos, svgs etc) unless you have a ruddy good reason not to!
+* A huge benefit to using Smart Objects is each can have its *own independent grid*
 
 ### Adjustment Layers
 Don't change originals, use adjustment layers so effects can be toggled, edited or removed.
@@ -88,7 +107,7 @@ Don't change originals, use adjustment layers so effects can be toggled, edited 
 ```
 #### Breakdown
 * `assets` is the primary folder for any linked items used in the project
-  * `colors` contains each colour defined within the project. Filenames should match variables later created in SCSS
+  * `colors` contains export of the swatches palette in use for the project
   * `icon` contains any icons used throughout the project, preferably SVG
   * `logo` contains the main brand logo (and potentially partner logos), preferably SVG
   * `misc` contains anything else
@@ -99,19 +118,16 @@ Don't change originals, use adjustment layers so effects can be toggled, edited 
   * `small` in our example we are using *small* as a non device specific size
 * `layouts` is where all page layout PSD's are located.
 
-### Colour Variables (Optional and Experimental)
-Photoshop does not unfortunately support colour variables, which has been a huge downfall as updating a colour to be slightly lighter after a client request can be a very length exercise. To counter this I've adopted a technique recently which does work around this, but it is quite restrictive - so I'm still unsure it's something to permanently adopt.
-
-#### The solution
-In the boilerplate I have made careful use of linked Smart Objects (using colours from `assets/color`) and layer masks accordingly. In theory this means if we update the Smart Object, it will be updated globally throughout the project.
+### Colour Variables
+Photoshop does not unfortunately support colour variables, which has been a huge downfall as updating a colour to be slightly lighter after a client request can be a very length exercise. To counter this we would recommend using [Prisma], a Photoshop Extension allowing you to define global styles.
 
 #### Known issues
-* Photoshop does not auto-update Smart Objects even or prompt on file open (as you might expect, similar to InDesign). To work around this I have created an action to     *Update All Linked Smart Objects* which can be run as a batch command on the project. As there are instances of nesting there will however likely be instances where files must be manually updated.
+* It is not possible to export colour libraries created and retain the relationship between layers - making this problematic for collaboration or sharing
+  * To counter this, you can use just one shared login which syncs colour libraries live
+* These global colours are only applied to the fill or text colour - ie. not to borders or effects
 
 ### Todos
 
- - Restructure this readme so it is easier to follow
- - Create Bootstrap files
  - Create Creative Little UI Kit design
 
 License
@@ -125,3 +141,4 @@ Copyright (c) 2016 Creative Little Dots. MIT Licensed, see [LICENSE] for details
    [Bootstrap]: <http://getbootstrap.com>
    [GuideGuide]: <http://guideguide.me>
    [License]: <https://github.com/creativelittledots/ps-kit/blob/master/LICENSE.md>
+   [Prisma]: <http://www.codeadventure.com>
